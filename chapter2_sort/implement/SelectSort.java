@@ -1,38 +1,30 @@
 package chapter2_sort.implement;
 
+import utils.util;
 
 public class SelectSort {
-	public static void main(String[] args){
+	public static void main(String[] args) {
 		int length = 20000;
-		int[] test = new int[length];
-		for (int i = 0; i < length; ++i) {
-			test[i] = (int)( Math.random() * 100);
-		}
-		
-		sort(test, 0, test.length-1);
-		
-		for (int i = 0; i < length; ++i) {
-			System.out.println(test[i]);
-		}
+		double[] test = new double[length];
+		util.makeRandom(test);
+		sort(test);
+		util.show(test);
+		System.out.println(util.isSorted(test));
+
 	}
-	
-	private static void sort(int[] a, int lo, int hi){
-		for (int i = lo; i <= hi; ++i) {
+
+	public static void sort(double[] a) {
+		for (int i = 0; i < a.length; ++i) {
 			int min = i;
-			for (int j = min+1; j <= hi; ++j){
+			for (int j = min + 1; j < a.length; ++j) {
 				if (a[j] < a[min]) {
 					min = j;
 				}
 			}
-			if (min != i){
-				exchange(a, min, i);
+			if (min != i) {
+				util.exchange(a, min, i);
 			}
 		}
 	}
-	
-	private static void exchange(int[] a, int i, int j){
-		int temp = a[i];
-		a[i] = a[j];
-		a[j] = temp;
-	}
+
 }
