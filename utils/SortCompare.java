@@ -8,7 +8,7 @@ public class SortCompare {
 		if (alg.equals("BubbleSort")) {
 			BubbleSort.sort(a);
 		} else if (alg.equals("InsertionSort")) {
-			InsertionSort.sort(a, 0, a.length);
+			InsertionSort.sort(a, 0, a.length-1);
 		} else if (alg.equals("SelectSort")) {
 			SelectSort.sort(a);
 		} else if (alg.equals("ShellSort")) {
@@ -18,7 +18,7 @@ public class SortCompare {
 			MergeSort.sort(a);
 		}
 		else if(alg.equals("QuickSort")){
-			QuickSort.sort(a, 0, a.length-1);
+			QuickSort.sort(a);
 		}
 		else {
 			System.out.println("input error");
@@ -39,8 +39,8 @@ public class SortCompare {
 	}
 
 	public static void main(String[] args) {
-		System.out.println(timeRandomInput("MergeSort", 5000, 20000));
-		System.out.println(timeRandomInput("ShellSort", 5000, 20000));
-		System.out.println(timeRandomInput("QuickSort", 5000, 20000));
+//		System.out.println(timeRandomInput("MergeSort", 500, 20000));
+//		System.out.println(timeRandomInput("ShellSort", 500, 20000));
+		System.out.println(timeRandomInput("QuickSort", 500, 200000));
 	}
 }

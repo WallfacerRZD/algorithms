@@ -26,7 +26,7 @@ public class util {
 	
 	public static void makeRandom(double[] a){
 		for (int i = 0; i < a.length; ++i){
-			a[i] = Math.random() * 60000;
+			a[i] = Math.random() * 6000;
 		}
 //		show(a);
 //		System.out.println("---------------------");
