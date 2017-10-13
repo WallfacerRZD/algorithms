@@ -4,14 +4,14 @@ import utils.util;
 
 public class BubbleSort {
 	public static void main(String[] args){
-		double[] test = new double[2000];
+		int[] test = new int[2000];
 		util.makeRandom(test);
 		sort(test);
 		util.show(test);
 		System.out.println(util.isSorted(test));
 	}
 	
-	public static void sort(double[] a){
+	public static void sort(int[] a){
 		for(int i = a.length-1; i > 0; --i){
 			for(int j = 0; j < i; ++j){
 				if(a[j] > a[j+1]){
@@ -21,7 +21,7 @@ public class BubbleSort {
 		}
 	}
 	
-	//´Ë·½·¨²»ÄÜ½»»»Êµ²ÎµÄÖµ
+	//æ­¤æ–¹æ³•ä¸èƒ½äº¤æ¢x, yçš„å€¼
 //	private static void exchange(int x, int y){
 //		int temp = x;
 //		x = y;

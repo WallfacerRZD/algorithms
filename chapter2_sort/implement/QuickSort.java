@@ -4,20 +4,20 @@ import utils.util;
 
 public class QuickSort {
 	
-	public static void sort(double[] a) {
-		sort(a, 0, a.length-1);
-		//三向切分快排
-//		sort3Way(a, 0, a.length-1);
+	public static void sort(int[] a) {
+//		sort(a, 0, a.length-1);
+//		三向切分快排,对有大量重复主键的数组快20%-30%
+		sort3Way(a, 0, a.length-1);
 	}
 	
-	private static void sort3Way(double[] a, int lo, int hi){
+	private static void sort3Way(int[] a, int lo, int hi){
 		if(hi <= lo){
 			return;
 		}
 		int i = lo + 1;
 		int li = lo;
 		int ri = hi;
-		double v = a[lo];
+		int v = a[lo];
 		while(i <= ri){
 			if(a[i] > v) {
 				util.exchange(a, i, ri--);
@@ -36,7 +36,7 @@ public class QuickSort {
 	
 	
 	
-	private static void sort(double[] a, int lo, int hi) {
+	private static void sort(int[] a, int lo, int hi) {
 		//数组较小时用插入排序
 //		if (hi <= lo + 10) {
 //			InsertionSort.sort(a, lo, hi);
@@ -50,10 +50,10 @@ public class QuickSort {
 		sort(a, p + 1, hi);
 	}
 
-	private static int partition(double[] a, int lo, int hi) {
+	private static int partition(int[] a, int lo, int hi) {
 		int i = lo;
 		int j = hi + 1;
-		double v = a[lo];
+		int v = a[lo];
 		while (true) {
 			while (a[++i] < v) {
 				if (i >= hi) {
@@ -75,10 +75,16 @@ public class QuickSort {
 	}
 
 	public static void main(String[] args) {
-		double[] test = new double[50000];
+		int[] test = new int[500000];
 		util.makeRandom(test);
+		for(int i = 20000; i < 300000; ++i){
+			test[i] = 1;
+		}
+		double beginTime = System.currentTimeMillis();
 		sort(test);
+		double endTime = System.currentTimeMillis();
 		System.out.println(util.isSorted(test));
+		System.out.println(endTime-beginTime);
 
 	}
 }

@@ -3,7 +3,7 @@ package utils;
 import chapter2_sort.implement.*;
 
 public class SortCompare {
-	public static double time(String alg, double[] a) {
+	public static double time(String alg, int[] a) {
 		double time1 = System.currentTimeMillis();
 		if (alg.equals("BubbleSort")) {
 			BubbleSort.sort(a);
@@ -31,7 +31,7 @@ public class SortCompare {
 	public static double timeRandomInput(String alg, int N, int size) {
 		double total = 0;
 		for (int i = 0; i < N; ++i) {
-			double[] test = new double[size];
+			int[] test = new int[size];
 			util.makeRandom(test);
 			total += time(alg, test);
 		}

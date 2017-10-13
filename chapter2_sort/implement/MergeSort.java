@@ -3,9 +3,9 @@ package chapter2_sort.implement;
 import utils.util;
 
 public class MergeSort {
-	private static double[] temp;
+	private static int[] temp;
 
-	private static void merge(double[] a, int lo, int mid, int hi) {
+	private static void merge(int[] a, int lo, int mid, int hi) {
 		for (int i = lo; i <= hi; ++i) {
 			temp[i] = a[i];
 		}
@@ -23,7 +23,7 @@ public class MergeSort {
 		}
 	}
 
-	private static void sort(double[] a, int lo, int hi) {
+	private static void sort(int[] a, int lo, int hi) {
 		if (hi <= lo)
 			return;
 		int mid = lo + (hi - lo) / 2;
@@ -34,13 +34,13 @@ public class MergeSort {
 		}
 	}
 
-	public static void sort(double[] a) {
-		temp = new double[a.length];
+	public static void sort(int[] a) {
+		temp = new int[a.length];
 		sort(a, 0, a.length - 1);
 	}
 	
 	public static void main(String[] args){
-		double[] test = new double[2000];
+		int[] test = new int[2000];
 		util.makeRandom(test);
 		sort(test);
 		System.out.println(util.isSorted(test));
