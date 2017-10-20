@@ -39,8 +39,9 @@ public class SortCompare {
 	}
 
 	public static void main(String[] args) {
-//		System.out.println(timeRandomInput("MergeSort", 500, 20000));
-//		System.out.println(timeRandomInput("ShellSort", 500, 20000));
-		System.out.println(timeRandomInput("QuickSort", 500, 200000));
+////		System.out.println(timeRandomInput("MergeSort", 500, 20000));
+////		System.out.println(timeRandomInput("ShellSort", 500, 20000));
+//		System.out.println(timeRandomInput("QuickSort", 500, 200000));
+		System.out.println(String.format("test %d, %d, test, %d", 1, 2, 3));
 	}
 }

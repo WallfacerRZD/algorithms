@@ -5,9 +5,9 @@ import utils.util;
 public class QuickSort {
 	
 	public static void sort(int[] a) {
-//		sort(a, 0, a.length-1);
+		sort(a, 0, a.length-1);
 //		三向切分快排,对有大量重复主键的数组快20%-30%
-		sort3Way(a, 0, a.length-1);
+//		sort3Way(a, 0, a.length-1);
 	}
 	
 	private static void sort3Way(int[] a, int lo, int hi){
