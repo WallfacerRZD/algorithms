@@ -73,25 +73,48 @@ public class BST<Key extends Comparable<Key>, Val> {
     }
 
     public Val min() {
-        return min(root);
-    }
-
-    private Val min(Node x) {
-        if (x.left == null) {
+        Node x = min(root);
+        if(x != null){
             return x.val;
-        } else {
-            return min(x.left);
+        }
+        else{
+            return null;
         }
     }
 
-    public Val max() {
-        return max(root);
+    private Node min(Node x) {
+        if (x == null){
+            return null;
+        }
+        if (x.left == null){
+            return x;
+        } else {
+            return min(x.left);
+        }
+
     }
 
-    private Val max(Node x) {
-        if (x.right == null) {
+    public Val max() {
+        Node x = max(root);
+        if (x != null){
             return x.val;
-        } else {
+        }else{
+            return null;
+        }
+//        no recursive
+//        Node x = root;
+//        while(x.right != null){
+//            x = x.right;
+//        }
+//        return x.val;
+    }
+
+    private Node max(Node x) {
+        if (x == null){
+            return null;
+        }else if(x.right == null) {
+            return x;
+        }else{
             return max(x.right);
         }
     }
@@ -166,16 +189,66 @@ public class BST<Key extends Comparable<Key>, Val> {
         return x;
     }
 
+    public void delete(Key key){
+        root = delete(root, key);
+    }
+
+    private Node delete(Node x, Key key){
+        if (x == null){
+            return null;
+        }else{
+            int cmp = key.compareTo(x.key);
+            if (cmp > 0){
+                x.right = delete(x.right, key);
+            }else if(cmp < 0){
+                x.left = delete(x.left, key);
+            }else{
+                if (x.right == null){
+                    return x.left;
+                }else if(x.left == null){
+                    return x.right;
+                }else{
+                    Node t = x;
+                    x = min(t.right);
+                    x.right = deleteMin(t.right);
+                    x.left = t.left;
+                }
+            }
+            x.N = size(x.left) + size(x.right) + 1;
+            return x;
+        }
+    }
+
+    public void print(){
+        print(root);
+    }
+
+    private void print(Node x){
+        if (x == null){
+            return;
+        }
+        print(x.left);
+        System.out.print(x.key + ",");
+        print(x.right);
+    }
+
     public static void main(String[] args) {
         BST<String, Integer> tree = new BST();
         tree.put("1", 1);
+        tree.put("-1", -1);
+        tree.put("3", 3);
         tree.put("2", 2);
         tree.put("4", 4);
+        tree.put("6", 200);
+        tree.put("-5", -5);
         // tree.put("6", 6);
         System.out.println(tree.get("2"));
-        tree.deleteMin();
+        tree.delete("6");
         System.out.println(tree.ceiling("1"));
         System.out.println(tree.min());
+        System.out.println(tree.max());
+        tree.print();
+
     }
 
 }

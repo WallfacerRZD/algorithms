@@ -8,6 +8,7 @@ public class InsertionSort {
 				util.exchange(a, j, j-1);
 			}
 		}
+
 	}
 	
 	public static void main(String[] args){
