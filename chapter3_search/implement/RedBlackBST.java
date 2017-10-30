@@ -2,20 +2,31 @@ package chapter3_search.implement;
 
 import com.sun.glass.ui.SystemClipboard;
 
-public class BST<Key extends Comparable<Key>, Val> {
+public class RedBlackBST<Key extends Comparable<Key>, Val> {
     private Node root;
+    private static final boolean RED = true;
+    private static final boolean BLACK = false;
 
     private class Node {
         private Key key;
         private Val val;
         Node left, right;
+        boolean color;
         private int N;
 
-        public Node(Key key, Val val, int N) {
+        public Node(Key key, Val val, int N, boolean color) {
             this.key = key;
             this.val = val;
             this.N = N;
+            this.color = color;
         }
+    }
+
+    private boolean isRed(Node x) {
+        if (x == null) {
+            return false;
+        }
+        return x.color == RED;
     }
 
     public int size() {
@@ -56,9 +67,37 @@ public class BST<Key extends Comparable<Key>, Val> {
         root = put(root, key, val);
     }
 
+    private Node rotateLeft(Node x) {
+        Node temp = x.right;
+        x.right = temp.left;
+        temp.left = x;
+        temp.color = x.color;
+        x.color = RED;
+        temp.N = x.N;
+        x.N = size(x.left) + size(x.right) + 1;
+        return temp;
+    }
+
+    private Node rotateRight(Node x) {
+        Node temp = x.left;
+        x.left = temp.right;
+        temp.right = x;
+        temp.color = x.color;
+        x.color = RED;
+        temp.N = x.N;
+        x.N = size(x.left) + size(x.right) + 1;
+        return temp;
+    }
+
+    private void flipColors(Node x) {
+        x.left.color = BLACK;
+        x.right.color = BLACK;
+        x.color = RED;
+    }
+
     private Node put(Node x, Key key, Val val) {
         if (x == null) {
-            return new Node(key, val, 1);
+            return new Node(key, val, 1, RED);
         }
         int cmp = key.compareTo(x.key);
         if (cmp > 0) {
@@ -68,25 +107,33 @@ public class BST<Key extends Comparable<Key>, Val> {
         } else {
             x.val = val;
         }
+        if (isRed(x.right) && !isRed(x.left)) {
+            x = rotateLeft(x);
+        }
+        if (isRed(x.left) && isRed(x.left.left)) {
+            x = rotateRight(x);
+        }
+        if (isRed(x.left) && isRed(x.right)) {
+            flipColors(x);
+        }
         x.N = size(x.left) + size(x.right) + 1;
         return x;
     }
 
     public Val min() {
         Node x = min(root);
-        if(x != null){
+        if (x != null) {
             return x.val;
-        }
-        else{
+        } else {
             return null;
         }
     }
 
     private Node min(Node x) {
-        if (x == null){
+        if (x == null) {
             return null;
         }
-        if (x.left == null){
+        if (x.left == null) {
             return x;
         } else {
             return min(x.left);
@@ -96,9 +143,9 @@ public class BST<Key extends Comparable<Key>, Val> {
 
     public Val max() {
         Node x = max(root);
-        if (x != null){
+        if (x != null) {
             return x.val;
-        }else{
+        } else {
             return null;
         }
 //        no recursive
@@ -110,11 +157,11 @@ public class BST<Key extends Comparable<Key>, Val> {
     }
 
     private Node max(Node x) {
-        if (x == null){
+        if (x == null) {
             return null;
-        }else if(x.right == null) {
+        } else if (x.right == null) {
             return x;
-        }else{
+        } else {
             return max(x.right);
         }
     }
@@ -189,25 +236,25 @@ public class BST<Key extends Comparable<Key>, Val> {
         return x;
     }
 
-    public void delete(Key key){
+    public void delete(Key key) {
         root = delete(root, key);
     }
 
-    private Node delete(Node x, Key key){
-        if (x == null){
+    private Node delete(Node x, Key key) {
+        if (x == null) {
             return null;
-        }else{
+        } else {
             int cmp = key.compareTo(x.key);
-            if (cmp > 0){
+            if (cmp > 0) {
                 x.right = delete(x.right, key);
-            }else if(cmp < 0){
+            } else if (cmp < 0) {
                 x.left = delete(x.left, key);
-            }else{
-                if (x.right == null){
+            } else {
+                if (x.right == null) {
                     return x.left;
-                }else if(x.left == null){
+                } else if (x.left == null) {
                     return x.right;
-                }else{
+                } else {
                     Node t = x;
                     x = min(t.right);
                     x.right = deleteMin(t.right);
@@ -219,12 +266,12 @@ public class BST<Key extends Comparable<Key>, Val> {
         }
     }
 
-    public void print(){
+    public void print() {
         print(root);
     }
 
-    private void print(Node x){
-        if (x == null){
+    private void print(Node x) {
+        if (x == null) {
             return;
         }
         print(x.left);
@@ -233,14 +280,14 @@ public class BST<Key extends Comparable<Key>, Val> {
     }
 
     public static void main(String[] args) {
-        BST<String, Integer> tree = new BST();
+        RedBlackBST<String, Integer> tree = new RedBlackBST<>();
         tree.put("1", 1);
-        tree.put("-1", -1);
-        tree.put("3", 3);
         tree.put("2", 2);
+        tree.put("3", 3);
         tree.put("4", 4);
-        tree.put("6", 200);
-        tree.put("-5", -5);
+        tree.put("5", 5);
+        tree.put("6", 6);
+        tree.put("7", 7);
         // tree.put("6", 6);
         System.out.println(tree.get("2"));
         tree.delete("6");
