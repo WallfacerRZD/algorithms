@@ -1,5 +1,6 @@
 package chapter2_sort.implement;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 
@@ -28,9 +29,14 @@ public class Test {
     }
 
     public static void main(String[] args) {
-        int[] test1 = new int[10];
-        sort(test1, new reverseComparator());
-        test(test1);
+//        int[] test1 = new int[10];
+//        sort(test1, new reverseComparator());
+//        test(test1);
+        ArrayList<String> test = new ArrayList<>();
+        ArrayList<Integer> test1 = new ArrayList<>();
+        if (test.equals(test1)){
+            System.out.println("equals");
+        }
 
     }
 
