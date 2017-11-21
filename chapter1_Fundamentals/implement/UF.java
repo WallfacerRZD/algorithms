@@ -4,13 +4,16 @@ import java.util.Scanner;
 
 public class UF {
     private int[] id;
+    private int[] size;
     private int count;
 
     public UF(int N) {
         count = N;
         id = new int[N];
+        size = new int[N];
         for (int i = 0; i < N; ++i) {
             id[i] = i;
+            size[i] = 1;
         }
     }
 
@@ -42,22 +45,28 @@ public class UF {
 
     // quick union
 
-    private int find(int x){
+    private int find(int x) {
 //        while (x != id[x]){
 //            x = id[x];
 //        }
 //        return x;
-        if(id[x] == x){
+        if (id[x] == x) {
             return x;
         }
         return find(id[x]);
     }
 
-    public void union(int p, int q){
+    public void union(int p, int q) {
         int pRoot = find(p);
         int qRoot = find(q);
-        if (pRoot != qRoot){
-            id[qRoot] = pRoot;
+        if (pRoot != qRoot) {
+            if (size[pRoot] > size[qRoot]) {
+                id[qRoot] = pRoot;
+                size[pRoot] += size[qRoot];
+            } else {
+                id[pRoot] = qRoot;
+                size[qRoot] += size[pRoot];
+            }
             --count;
         }
     }
@@ -66,7 +75,7 @@ public class UF {
         Scanner input = new Scanner(System.in);
         int N = input.nextInt();
         UF test = new UF(N);
-        for(int i = 0 ; i < 5; ++i){
+        for (int i = 0; i < 5; ++i) {
             int q = input.nextInt();
             int p = input.nextInt();
             test.union(q, p);
