@@ -36,9 +36,4 @@ public class Graph {
     public Iterable<Integer> getAdjAt(int v){
         return adj[v];
     }
-
-
-    public static void main(String[] args) {
-
-    }
 }
