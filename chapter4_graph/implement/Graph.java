@@ -7,19 +7,26 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.LinkedList;
+import java.util.Scanner;
 
 public class Graph {
     private int V;
     private int E;
     private LinkedList<Integer>[] adj;
 
-    public Graph(int V) {
+    public Graph(int V, int E) {
         this.V = V;
         this.E = 0;
         adj = (LinkedList<Integer>[]) new LinkedList[V];
         // 初始化链表数组的每个元素
         for (int i = 0; i < adj.length; ++i) {
             adj[i] = new LinkedList();
+        }
+        for(int i = 0; i < E; ++i) {
+            Scanner input = new Scanner(System.in);
+            int v1 = input.nextInt();
+            int v2 = input.nextInt();
+            addEdge(v1, v2);
         }
     }
 
