@@ -2,6 +2,8 @@ package chapter3_search.implement;
 
 import com.sun.glass.ui.SystemClipboard;
 
+import java.util.Stack;
+
 public class BST<Key extends Comparable<Key>, Val> {
     private Node root;
 
@@ -74,19 +76,18 @@ public class BST<Key extends Comparable<Key>, Val> {
 
     public Val min() {
         Node x = min(root);
-        if(x != null){
+        if (x != null) {
             return x.val;
-        }
-        else{
+        } else {
             return null;
         }
     }
 
     private Node min(Node x) {
-        if (x == null){
+        if (x == null) {
             return null;
         }
-        if (x.left == null){
+        if (x.left == null) {
             return x;
         } else {
             return min(x.left);
@@ -96,9 +97,9 @@ public class BST<Key extends Comparable<Key>, Val> {
 
     public Val max() {
         Node x = max(root);
-        if (x != null){
+        if (x != null) {
             return x.val;
-        }else{
+        } else {
             return null;
         }
 //        no recursive
@@ -110,11 +111,11 @@ public class BST<Key extends Comparable<Key>, Val> {
     }
 
     private Node max(Node x) {
-        if (x == null){
+        if (x == null) {
             return null;
-        }else if(x.right == null) {
+        } else if (x.right == null) {
             return x;
-        }else{
+        } else {
             return max(x.right);
         }
     }
@@ -189,25 +190,25 @@ public class BST<Key extends Comparable<Key>, Val> {
         return x;
     }
 
-    public void delete(Key key){
+    public void delete(Key key) {
         root = delete(root, key);
     }
 
-    private Node delete(Node x, Key key){
-        if (x == null){
+    private Node delete(Node x, Key key) {
+        if (x == null) {
             return null;
-        }else{
+        } else {
             int cmp = key.compareTo(x.key);
-            if (cmp > 0){
+            if (cmp > 0) {
                 x.right = delete(x.right, key);
-            }else if(cmp < 0){
+            } else if (cmp < 0) {
                 x.left = delete(x.left, key);
-            }else{
-                if (x.right == null){
+            } else {
+                if (x.right == null) {
                     return x.left;
-                }else if(x.left == null){
+                } else if (x.left == null) {
                     return x.right;
-                }else{
+                } else {
                     Node t = x;
                     x = min(t.right);
                     x.right = deleteMin(t.right);
@@ -219,17 +220,34 @@ public class BST<Key extends Comparable<Key>, Val> {
         }
     }
 
-    public void print(){
+    public void print() {
         print(root);
     }
 
-    private void print(Node x){
-        if (x == null){
-            return;
+//    private void print(Node x){
+//        if (x == null){
+//            return;
+//        }
+//        print(x.left);
+//        System.out.print(x.key + ",");
+//        print(x.right);
+//    }
+
+    // no recursive
+    private void print(Node x) {
+        Stack<Node> stack = new Stack<Node>();
+        Node p = x;
+        while (p != null || !stack.empty()) {
+            while (p != null) {
+                stack.push(p);
+                p = p.left;
+            }
+            if (!stack.empty()) {
+                p = stack.pop();
+                System.out.print(p.key + " ");
+                p = p.right;
+            }
         }
-        print(x.left);
-        System.out.print(x.key + ",");
-        print(x.right);
     }
 
     public static void main(String[] args) {
