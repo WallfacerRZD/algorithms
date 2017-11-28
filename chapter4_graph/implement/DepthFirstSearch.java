@@ -54,9 +54,9 @@ public class DepthFirstSearch {
     }
 
     public static void main(String[] args){
-        Graph test = new Graph("F:\\code\\java\\algorithms\\algs4-data\\tinyG.txt");
+        Graph test = new Graph("F:\\code\\java\\algorithms\\algs4-data\\tinyCG.txt");
 //        Graph test = new Graph(6, 5);
-        DepthFirstSearch dfs = new DepthFirstSearch(test, 9);
+        DepthFirstSearch dfs = new DepthFirstSearch(test, 0);
         for (int i = 0; i < test.V(); ++i){
             if (dfs.marked(i)){
                 System.out.print(i + " ");

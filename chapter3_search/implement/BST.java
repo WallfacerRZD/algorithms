@@ -251,7 +251,7 @@ public class BST<Key extends Comparable<Key>, Val> {
     }
 
     public static void main(String[] args) {
-        BST<String, Integer> tree = new BST();
+        BST<String, Integer> tree = new BST<String, Integer>();
         tree.put("1", 1);
         tree.put("-1", -1);
         tree.put("3", 3);
