@@ -18,12 +18,13 @@ public class BreadFirstPaths {
 
     private void bfs(Graph g, int s) {
         Queue<Integer> queue = new LinkedList<Integer>();
+        marked[s] = true;
         queue.offer(s);
         while (!queue.isEmpty()) {
             int v = queue.poll();
-            marked[v] = true;
             for (int x : g.getAdjAt(v)) {
                 if (!marked[x]) {
+                    marked[x] = true;
                     edgeTo[x] = v;
                     queue.offer(x);
                 }

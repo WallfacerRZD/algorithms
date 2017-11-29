@@ -13,59 +13,57 @@ public class DepthFirstSearch {
 //        }
         dfs(g, s);
     }
+    // recursive
+    private void dfs(Graph g, int v) {
+        marked[v] = true;
+        ++count;
+        for (int x : g.getAdjAt(v)) {
+            if (!marked[x]) {
+                dfs(g, x);
+            }
+        }
+    }
 
+    // no recursive
 //    private void dfs(Graph g, int v) {
-//        marked[v] = true;
-//        ++count;
-//        for(int x : g.getAdjAt(v)){
-//            if(!marked[x]){
-//                dfs(g, x);
+//        Stack<Integer> stack = new Stack<Integer>();
+//        stack.push(v);
+//        while (!stack.empty()) {
+//            int x = stack.pop();
+//            if (!marked[x]) {
+//                marked[x] = true;
+//                ++count;
 //            }
+//            for (int i : g.getAdjAt(x)) {
+//                if (!marked[i]) {
+//                    stack.push(i);
+//                }
+//            }
+//            System.out.println(stack.size());
 //        }
 //    }
 
-    // no recursive
-    private void dfs(Graph g, int v) {
-        Stack<Integer> stack = new Stack<Integer>();
-        stack.push(v);
-        while(!stack.empty()) {
-            int x = stack.pop();
-            if (!marked[x]) {
-                ++count;
-                marked[x] = true;
-            }
-            for (int i : g.getAdjAt(x)){
-                if (!marked[i]){
-                    stack.push(i);
-                }
-//                stack.push(i);
-            }
-            System.out.println(stack.size());
-        }
-    }
 
-
-
-    public boolean marked(int x){
+    public boolean marked(int x) {
         return marked[x];
     }
-    public int count(){
+
+    public int count() {
         return count;
     }
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         Graph test = new Graph("F:\\code\\java\\algorithms\\algs4-data\\tinyCG.txt");
 //        Graph test = new Graph(6, 5);
         DepthFirstSearch dfs = new DepthFirstSearch(test, 0);
-        for (int i = 0; i < test.V(); ++i){
-            if (dfs.marked(i)){
+        for (int i = 0; i < test.V(); ++i) {
+            if (dfs.marked(i)) {
                 System.out.print(i + " ");
             }
         }
-        if (dfs.count() == test.V()){
+        if (dfs.count() == test.V()) {
             System.out.println("connected!!");
-        }
-        else{
+        } else {
             System.out.println("not!!");
         }
     }
