@@ -5,19 +5,19 @@ import chapter2_sort.implement.*;
 public class SortCompare {
 	public static double time(String alg, int[] a) {
 		double time1 = System.currentTimeMillis();
-		if (alg.equals("BubbleSort")) {
+		if ("BubbleSort".equals(alg)) {
 			BubbleSort.sort(a);
-		} else if (alg.equals("InsertionSort")) {
+		} else if ("InsertionSort".equals(alg)) {
 			InsertionSort.sort(a, 0, a.length-1);
-		} else if (alg.equals("SelectSort")) {
+		} else if ("SelectSort".equals(alg)) {
 			SelectSort.sort(a);
-		} else if (alg.equals("ShellSort")) {
+		} else if ("ShellSort".equals(alg)) {
 			ShellSort.sort(a);
 		}
-		else if(alg.equals("MergeSort")){
+		else if("MergeSort".equals(alg)){
 			MergeSort.sort(a);
 		}
-		else if(alg.equals("QuickSort")){
+		else if("QuickSort".equals(alg)){
 			QuickSort.sort(a);
 		}
 		else {

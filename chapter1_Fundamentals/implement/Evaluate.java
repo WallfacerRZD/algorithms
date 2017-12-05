@@ -12,21 +12,21 @@ public class Evaluate {
         String[] str_array = expression.split(" ");
         for (int i = 0; i < str_array.length; ++i) {
             String c = str_array[i];
-            if (c.equals("(")) {
-            } else if (c.equals(")")) {
+            if ("(".equals(c)) {
+            } else if (")".equals(c)) {
                 double v = vals.pop();
                 String op = ops.pop();
-                if (op.equals("+")) {
+                if ("+".equals(op)) {
                     v = vals.pop() + v;
-                } else if (op.equals("-")) {
+                } else if ("-".equals(op)) {
                     v = vals.pop() - v;
-                } else if (op.equals("*")) {
+                } else if ("*".equals(op)) {
                     v = vals.pop() * v;
                 } else {
                     v = vals.pop() / v;
                 }
                 vals.push(v);
-            } else if (c.equals("+") || c.equals("-") || c.equals("*") || c.equals("/")) {
+            } else if ("+".equals(c) || "-".equals(c) || "*".equals(c) || "/".equals(c)) {
                 ops.push(c);
             } else {
                 vals.push(Double.parseDouble(c));

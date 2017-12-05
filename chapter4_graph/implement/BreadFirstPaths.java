@@ -5,8 +5,8 @@ import java.util.LinkedList;
 import java.util.Stack;
 
 public class BreadFirstPaths {
-    private boolean marked[];
-    private int edgeTo[];
+    private boolean[] marked;
+    private int[] edgeTo;
     private final int source;
 
     public BreadFirstPaths(Graph g, int s) {

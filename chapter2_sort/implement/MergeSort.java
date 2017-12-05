@@ -24,8 +24,9 @@ public class MergeSort {
 	}
 
 	private static void sort(int[] a, int lo, int hi) {
-		if (hi <= lo)
-			return;
+		if (hi <= lo) {
+            return;
+        }
 		int mid = lo + (hi - lo) / 2;
 		sort(a, lo, mid);
 		sort(a, mid + 1, hi);

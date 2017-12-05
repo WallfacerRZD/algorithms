@@ -4,7 +4,7 @@ import java.util.Stack;
 
 public class DepthFirstPaths {
     private boolean[] marked;
-    // 以s为根节点的路径树
+    //    以s为根节点的路径树
     private int[] edgeTo;
     private final int s;
 
@@ -48,13 +48,13 @@ public class DepthFirstPaths {
         DepthFirstPaths testDepthFirstPaths = new DepthFirstPaths(testGraph, source);
         for (int i = 0, v = testGraph.V(); i < v; ++i) {
             if (testDepthFirstPaths.hasPathTo(i)) {
-                Stack<Integer> paths = (Stack<Integer>)testDepthFirstPaths.pathTo(i);
+                Stack<Integer> paths = (Stack<Integer>) testDepthFirstPaths.pathTo(i);
                 System.out.print(source + " to " + i + ":");
-                while (!paths.empty()){
+                while (!paths.empty()) {
                     int x = paths.pop();
-                    if (x != source)
+                    if (x != source) {
                         System.out.print("-" + x);
-                    else {
+                    } else {
                         System.out.print(x);
                     }
                 }

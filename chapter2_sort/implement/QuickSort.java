@@ -65,8 +65,9 @@ public class QuickSort {
 					break;
 				}
 			}
-			if (j <= i)
-				break;
+			if (j <= i) {
+                break;
+            }
 			util.exchange(a, j, i);
 		}
 		util.exchange(a, lo, j);

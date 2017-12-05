@@ -13,7 +13,11 @@ public class DepthFirstSearch {
 //        }
         dfs(g, s);
     }
-    // recursive
+
+    /**
+     * recursive
+     *
+     */
     private void dfs(Graph g, int v) {
         marked[v] = true;
         ++count;
