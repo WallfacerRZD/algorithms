@@ -43,9 +43,11 @@ public class SymbolGraph {
             String line = in.getLine();
             String[] words = line.split(separation);
             for (int i = 1; i < words.length; ++i) {
-                g.addEdge(st.get(words[1]), st.get(words[i]));
+                g.addEdge(st.get(words[0]), st.get(words[i]));
             }
         }
+
+
 
 
     }
@@ -67,7 +69,11 @@ public class SymbolGraph {
     }
 
     public static void main(String[] args) {
-        SymbolGraph sg = new SymbolGraph("F:\\code\\java\\algorithms\\algs4-data\\movies.txt", "/");
-
+        SymbolGraph sg = new SymbolGraph("F:\\code\\java\\algorithms\\algs4-data\\routes.txt", " ");
+        Graph g = sg.getG();
+        String name = "PHX";
+        for (int i : g.getAdjAt(sg.index(name))){
+            System.out.println(sg.name(i));
+        }
     }
 }
