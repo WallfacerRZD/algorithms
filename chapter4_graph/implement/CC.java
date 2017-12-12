@@ -5,7 +5,7 @@ import java.util.ArrayList;
 /**
  * 深度优先搜索查找联通分量
  *
- * @author 冉哲东
+ * @author RZD
  * @date 2017/12/5
  */
 
