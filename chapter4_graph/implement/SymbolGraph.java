@@ -3,9 +3,7 @@ package chapter4_graph.implement;
 
 import utils.In;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.*;
 
 public class SymbolGraph {
     /**
@@ -35,7 +33,6 @@ public class SymbolGraph {
         for (String key : st.keySet()) {
             keys[st.get(key)] = key;
         }
-
         // 构造图
         g = new Graph(st.size());
         in = new In(path);
@@ -69,11 +66,29 @@ public class SymbolGraph {
     }
 
     public static void main(String[] args) {
-        SymbolGraph sg = new SymbolGraph("F:\\code\\java\\algorithms\\algs4-data\\routes.txt", " ");
+        SymbolGraph sg = new SymbolGraph("F:\\code\\java\\algorithms\\algs4-data\\movies.txt", "/");
+        Scanner input = new Scanner(System.in);
         Graph g = sg.getG();
-        String name = "PHX";
-        for (int i : g.getAdjAt(sg.index(name))){
-            System.out.println(sg.name(i));
+
+        String sourceName = input.nextLine();
+        int index = sg.index(sourceName);
+
+        BreadFirstPaths bfs = new BreadFirstPaths(g, index);
+        if (!sg.contains(sourceName)){
+            System.out.println("not in database!!");
+            return;
+        }
+        String name = input.nextLine();
+        index = sg.index(name);
+
+        if (bfs.hasPathTo(index)){
+            Stack<Integer> stack = (Stack<Integer>)bfs.pathTo(index);
+            while(!stack.empty()){
+                System.out.println("   " + sg.name(stack.pop()));
+            }
+        }
+        else{
+            System.out.println("not connected!!");
         }
     }
 }
