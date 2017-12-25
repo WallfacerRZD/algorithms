@@ -1,12 +1,11 @@
 package chapter3_search.implement;
 
-import com.sun.glass.ui.SystemClipboard;
+
 
 import java.util.Stack;
 
 public class BST<Key extends Comparable<Key>, Val> {
     private Node root;
-
     private class Node {
         private Key key;
         private Val val;
