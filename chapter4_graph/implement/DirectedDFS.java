@@ -10,6 +10,13 @@ public class DirectedDFS {
         dfs(graph, s);
     }
 
+    public DirectedDFS(Digraph graph, int[] sources){
+        marked = new boolean[graph.v()];
+        for (int x : sources){
+            dfs(graph, x);
+        }
+    }
+
     private void dfs(Digraph graph, int v) {
         marked[v] = true;
         for (int x : graph.getAdjAt(v)) {
@@ -27,8 +34,8 @@ public class DirectedDFS {
         String path = "F:\\code\\java\\algorithms\\algs4-data\\tinyDG.txt";
         In in = new In(path);
         Digraph testGraph = new Digraph(in);
-        int source = 2;
-        DirectedDFS test = new DirectedDFS(testGraph, source);
+        int[] sources = {1, 2 ,6};
+        DirectedDFS test = new DirectedDFS(testGraph, sources);
         for (int i = 0, v = testGraph.v(); i < v; ++i) {
             if (test.marked(i)){
                 System.out.println(" " + i);
