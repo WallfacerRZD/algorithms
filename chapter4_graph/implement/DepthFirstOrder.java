@@ -1,5 +1,8 @@
 package chapter4_graph.implement;
 
+
+import utils.In;
+
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Stack;
@@ -43,4 +46,5 @@ public class DepthFirstOrder {
     public Iterable<Integer> getReversePost() {
         return reversePost;
     }
+
 }

@@ -51,7 +51,7 @@ public class Digraph {
         ++e;
     }
 
-    public Iterable<Integer> getAdjAt(int v) {
+    public ArrayList<Integer> getAdjAt(int v) {
         return adj[v];
     }
 
