@@ -9,7 +9,6 @@ public class In {
     private Scanner sc;
 
     public In(String path) {
-        sc = null;
         try {
             sc = new Scanner(new File(path));
         } catch (FileNotFoundException e) {

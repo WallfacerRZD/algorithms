@@ -1,12 +1,14 @@
 package chapter4_graph.implement;
 
 
-import utils.In;
-
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Stack;
 
+/**
+ * 深度优先搜索实现拓扑排序
+ * 深度优先的逆后序序列按dfs(x)结束时间递减排列
+ */
 public class DepthFirstOrder {
     private boolean[] marked;
     private Queue<Integer> pre;
@@ -43,7 +45,7 @@ public class DepthFirstOrder {
         return pre;
     }
 
-    public Iterable<Integer> getReversePost() {
+     public Stack<Integer> getReversePost() {
         return reversePost;
     }
 
