@@ -7,7 +7,8 @@ public class UF {
     private int[] size;
     private int count;
 
-    public UF(int N) {
+    // weighted
+/*    public UF(int N) {
         count = N;
         id = new int[N];
         size = new int[N];
@@ -15,6 +16,23 @@ public class UF {
             id[i] = i;
             size[i] = 1;
         }
+    }*/
+
+    public UF(int N) {
+        count = N;
+        id = new int[N];
+        for (int i = 0; i < N; ++i) {
+            id[i] = i;
+        }
+    }
+
+    private int find(int x) {
+/*       while (x != id[x]){
+           x = id[x];
+       }
+       return x;*/
+
+       return id[x] == x ? x : find(id[x]);
     }
 
     public int count() {
@@ -25,38 +43,37 @@ public class UF {
         return find(p) == find(q);
     }
 
+    public void union(int p, int q) {
+        int pRoot = find(p);
+        int qRoot = find(q);
+        if (pRoot != qRoot) {
+            id[pRoot] = qRoot;
+        }
+        --count;
+    }
+
     // quick find
-//    private int find(int x) {
-//        return id[x];
-//    }
-//
-//    public void union(int p, int q) {
-//        int pID = find(p);
-//        int qID = find(q);
-//        if (pID != qID) {
-//            for (int i = 0, N = id.length; i < N; ++i) {
-//                if (id[i] == qID) {
-//                    id[i] = pID;
-//                }
-//            }
-//            --count;
-//        }
-//    }
+/*   private int find(int x) {
+       return id[x];
+   }
+
+   public void union(int p, int q) {
+       int pID = find(p);
+       int qID = find(q);
+       if (pID != qID) {
+           for (int i = 0, N = id.length; i < N; ++i) {
+               if (id[i] == qID) {
+                   id[i] = pID;
+               }
+           }
+           --count;
+       }
+   }*/
 
     // quick union
 
-    private int find(int x) {
-//        while (x != id[x]){
-//            x = id[x];
-//        }
-//        return x;
-        if (id[x] == x) {
-            return x;
-        }
-        return find(id[x]);
-    }
 
-    public void union(int p, int q) {
+/*    public void union(int p, int q) {
         int pRoot = find(p);
         int qRoot = find(q);
         if (pRoot != qRoot) {
@@ -69,17 +86,6 @@ public class UF {
             }
             --count;
         }
-    }
+    }*/
 
-    public static void main(String[] args) {
-        Scanner input = new Scanner(System.in);
-        int N = input.nextInt();
-        UF test = new UF(N);
-        for (int i = 0; i < 5; ++i) {
-            int q = input.nextInt();
-            int p = input.nextInt();
-            test.union(q, p);
-        }
-        System.out.println(test.count());
-    }
 }

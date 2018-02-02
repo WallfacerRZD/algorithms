@@ -14,8 +14,7 @@ import java.util.Queue;
  *      每次从优先队列里取出一条边(边权最小)加入到最小生成树队列
  * 注意: 检查边是否已无效(两个点都被标记)
  *
- * @author RZD
- * @date 2018/2/2 
+ * @date 2018/2/2
  */
 public class LazyPrimMST {
     private boolean[] marked;
@@ -57,7 +56,7 @@ public class LazyPrimMST {
     }
 
     public static void main(String[] args) {
-        In in = new In("../algs4-data/mediumEWG.txt");
+        In in = new In("../algs4-data/tinyEWG.txt");
         EdgeWeightGraph testGraph = new EdgeWeightGraph(in);
         LazyPrimMST test = new LazyPrimMST(testGraph);
         for (Edge e : test.edges()) {
