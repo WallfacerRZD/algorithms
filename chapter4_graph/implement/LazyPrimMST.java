@@ -1,9 +1,14 @@
 package chapter4_graph.implement;
 
+import utils.In;
+
 import java.util.LinkedList;
 import java.util.PriorityQueue;
 import java.util.Queue;
 
+/**
+ * 
+ */
 public class LazyPrimMST {
     private boolean[] marked;
     private Queue<Edge> mst;
@@ -41,5 +46,14 @@ public class LazyPrimMST {
 
     public Iterable<Edge> edges() {
         return mst;
+    }
+
+    public static void main(String[] args) {
+        In in = new In("../algs4-data/mediumEWG.txt");
+        EdgeWeightGraph testGraph = new EdgeWeightGraph(in);
+        LazyPrimMST test = new LazyPrimMST(testGraph);
+        for (Edge e : test.edges()) {
+            System.out.println(e);
+        }
     }
 }
