@@ -4,14 +4,14 @@ import utils.In;
 
 import java.util.ArrayList;
 
-public class EdgeWeightGraph {
+public class EdgeWeightedDigraph {
     private final int v;
     private int e;
-    private ArrayList<Edge>[] adj;
+    private ArrayList<DirectedEdge>[] adj;
 
-    public EdgeWeightGraph(In in) {
+    public EdgeWeightedDigraph(In in) {
         this.v = Integer.parseInt(in.getLine());
-        adj = (ArrayList<Edge>[]) new ArrayList[this.v];
+        adj = (ArrayList<DirectedEdge>[]) new ArrayList[this.v];
         for (int i = 0; i < v; i++) {
             adj[i] = new ArrayList<>();
         }
@@ -21,9 +21,14 @@ public class EdgeWeightGraph {
             int v = Integer.parseInt(values[0]);
             int w = Integer.parseInt(values[1]);
             double weight = Double.parseDouble(values[2]);
-            Edge edge = new Edge(v, w, weight);
+            DirectedEdge edge = new DirectedEdge(v, w, weight);
             addEdge(edge);
         }
+    }
+
+    public void addEdge(DirectedEdge e) {
+        adj[e.from()].add(e);
+        ++this.e;
     }
 
     public int getV() {
@@ -34,24 +39,15 @@ public class EdgeWeightGraph {
         return e;
     }
 
-    public void addEdge(Edge e) {
-        int v = e.either(), w = e.other(v);
-        adj[v].add(e);
-        adj[w].add(e);
-        this.e++;
-    }
-
-    public Iterable<Edge> adj(int v) {
+    public Iterable<DirectedEdge> adj(int v) {
         return adj[v];
     }
 
-    public Iterable<Edge> edges() {
-        ArrayList<Edge> edges = new ArrayList<>();
-        for (int v = 0; v < this.v; ++v) {
-            for (Edge e : adj[v]) {
-                if (e.other(v) > v) {
-                    edges.add(e);
-                }
+    public Iterable<DirectedEdge> edges() {
+        ArrayList<DirectedEdge> edges = new ArrayList<>();
+        for (int i = 0; i < getV(); ++i) {
+            for (DirectedEdge e : adj[i]) {
+                edges.add(e);
             }
         }
         return edges;
