@@ -17,7 +17,7 @@ public class EdgeWeightedDigraph {
         }
         in.getLine();
         while (in.hasNextLine()) {
-            String[] values = in.getLine().split(" ");
+            String[] values = in.getLine().trim().split("\\s+");
             int v = Integer.parseInt(values[0]);
             int w = Integer.parseInt(values[1]);
             double weight = Double.parseDouble(values[2]);
@@ -52,4 +52,12 @@ public class EdgeWeightedDigraph {
         }
         return edges;
     }
+
+/*    public static void main(String[] args) {
+        In in = new In("F:\\code\\java\\algorithms\\src\\algs4-data\\tinyEWD.txt");
+        EdgeWeightedDigraph testGraph = new EdgeWeightedDigraph(in);
+        for (DirectedEdge e : testGraph.edges()) {
+            System.out.println(e);
+        }
+    }*/
 }
