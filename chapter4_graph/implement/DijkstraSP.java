@@ -14,7 +14,7 @@ import java.util.Stack;
  *      relax(v): 松弛v点邻接的每条边.
  *      初始化distTo数组为无穷大, distTo[s]为0, 将源点加入到索引优先队列
  *      每次从优先队列取出一点(离源点最近), 松弛该点邻接的每条边
- *      
+ *
  * @date 2018/2/3
  */
 public class DijkstraSP {
