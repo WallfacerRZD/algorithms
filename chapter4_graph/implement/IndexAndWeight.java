@@ -8,4 +8,13 @@ public class IndexAndWeight {
         this.index = index;
         this.weight = weight;
     }
+
+    /**
+     * PriorityQueue用equals方法比较对象
+     */
+    @Override
+    public boolean equals(Object obj) {
+        IndexAndWeight that = (IndexAndWeight)obj;
+        return index == that.index && weight == that.weight;
+    }
 }

@@ -5,7 +5,6 @@ import java.util.Comparator;
 import java.util.PriorityQueue;
 
 
-
 public class IndexPQ {
 
     PriorityQueue<IndexAndWeight> pq;
@@ -44,8 +43,13 @@ public class IndexPQ {
     public IndexAndWeight poll() {
         return pq.poll();
     }
+
     public void offer(IndexAndWeight x) {
         pq.offer(x);
+    }
+
+    public int size() {
+        return pq.size();
     }
 
 }
